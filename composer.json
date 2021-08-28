@@ -1,0 +1,14 @@
+{
+    "name": "jandelson/paranga",
+    "description": "agenda de contatos e compromisso",
+    "authors": [
+        {
+            "name": "Jandelson  Oliveira",
+            "email": "jandelson_oliveira@yahoo.com.br"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"Agenda\\": "src/"}
+    }
+}
