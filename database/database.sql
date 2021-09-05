@@ -1,3 +1,5 @@
+CREATE DATABASE agenda;
+
 CREATE TABLE endereco
 (
     id_endereco integer PRIMARY KEY AUTO_INCREMENT,
@@ -28,5 +30,5 @@ CREATE TABLE contato
 );
 
 
--- ON UPDATE CASCADE 
+-- ON UPDATE CASCADE
 -- ON DELETE CASCADE;
