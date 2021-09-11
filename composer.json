@@ -1,0 +1,12 @@
+{
+    "description": "agenda de contatos e compromisso",
+    "authors": [
+        {
+            "name": "Josué Queiroz",
+            "email": "josuestz5@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Agenda\\": "src/"}
+    }
+}
