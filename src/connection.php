@@ -1,12 +1,14 @@
 <?php
+namespace Agenda;
 
 class Connection
 {
-    public function Conn(){
+    /* Consumir o mesmo statico Class::Conn() */
+    public static function Conn(){
         try {
-            $sql = new PDO('mysql:host=localhost;dbname=paranga_study;charset=utf8','root', '');
+            $sql = new \PDO('mysql:host=localhost;dbname=paranga_study;charset=utf8','root', '');
             return $sql;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e;
         }
     }
