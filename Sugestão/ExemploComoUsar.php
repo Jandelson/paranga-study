@@ -99,7 +99,7 @@ class Connection
   
 
 $C = new ContatoController();
-$retorno = $C->BuscarContato('jozuka');
+$retorno = $C->BuscarContato();
 
 //$retorno = $C->AdicionaContato('jozuka', 'josuestz5@gmail.com', '16993422813', 1);
 
