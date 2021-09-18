@@ -1,5 +1,5 @@
 <?php
-namespace Agenda;
+namespace Core;
 
 class Connection
 {
