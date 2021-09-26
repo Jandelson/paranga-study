@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins';
+}
+
+a, a:hover{
+    text-decoration: none;
+}
+
+.group-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+section {
+    margin-top: 150px;
+    /* border: 1px solid red; */
+}
+
+.agendamento-h3 {
+    font-size: 1.3rem;
+}
+
+/* icones */
+
+td.icons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.fa-eye{
+    color: #242424;
+}
+
+.fa-edit{
+    color: rgb(7, 85, 27);
+}
+
+.fa-trash{
+    color: rgb(150, 12, 12);
+}
+
+/* fim icones */
