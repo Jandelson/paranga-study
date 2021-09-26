@@ -1,0 +1,33 @@
+version: "3.1"
+
+services:
+  apache:
+    container_name: php7
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - "~/Code/php/:/var/www/html/:z"
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    networks:
+      - backend
+
+  mysqldb:
+    container_name: mysql57
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agenda
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
