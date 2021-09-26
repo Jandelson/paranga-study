@@ -43,7 +43,7 @@ Adicionar as linhas abaixo:
 
 Adicione as linhas abaixo:
 
-`zend_extension=[xdebug.so](http://xdebug.so/)
+`zend_extension=xdebug.so
 xdebug.mode=develop,coverage,debug
 xdebug.discover_client_host=true
 xdebug.client_port=9000
