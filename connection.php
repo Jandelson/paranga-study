@@ -1,12 +1,8 @@
 <?php
 
-class Connection{
-    public static function Conn(){
-        try{
-            $sql = new \PDO('mysql:host=localhost;dbname=bancoagenda;charset=utf8','root', '');
-            return $sql;
-        }catch(\Exception $e){
-            echo $e;
-        }
-    }
-}
+$host = "localhost";
+$db = "bancoagenda";
+$user = "root";
+$pass = "";
+
+$conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8",$user, $pass);

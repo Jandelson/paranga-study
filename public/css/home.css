@@ -6,6 +6,10 @@
     font-family: 'poppins';
 }
 
+a, a:hover{
+    text-decoration: none;
+}
+
 .group-buttons {
     display: flex;
     justify-content: center;
@@ -20,3 +24,24 @@ section {
 .agendamento-h3 {
     font-size: 1.3rem;
 }
+
+/* icones */
+
+td.icons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.fa-eye{
+    color: #242424;
+}
+
+.fa-edit{
+    color: rgb(7, 85, 27);
+}
+
+.fa-trash{
+    color: rgb(150, 12, 12);
+}
+
+/* fim icones */

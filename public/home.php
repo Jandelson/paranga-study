@@ -6,6 +6,7 @@ require('bootstrap.php');
 <head>
     <title>Agenda Web</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 
 <body>
@@ -13,7 +14,7 @@ require('bootstrap.php');
         <div class="group-buttons">
             <div class="grid">
                 <div class="g-col-4">
-                    <a href="#" class="btn btn-success">Novo Agendamento</a>
+                    <a href="cadastrarAgendamento.php" class="btn btn-success">Novo Agendamento</a>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#novoUsuario">
                         Cadastrar usuário
                     </button>
@@ -68,14 +69,26 @@ require('bootstrap.php');
         </div>
         <section>
             <h3 class="agendamento-h3">Agendamentos</h3>
-            <table class="table table-striped table-secondary">
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Ações</th>
+                        <th class="text-center" scope="col">ID</th>
+                        <th class="text-center" scope="col">Nome</th>
+                        <th class="text-center" scope="col">Descrição</th>
+                        <th class="text-center" scope="col">Ações</th>
                     </tr>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center">Otto</td>
+                        <td class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</td>
+                        <td class="icons">
+                            <a href="#"><i class="fas fa-eye"></i></a>
+                            <a href="#"><i class="fas fa-edit"></i></a>
+                            <a href="#"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
                 </thead>
         </section>
     </div>
