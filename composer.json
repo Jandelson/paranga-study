@@ -1,0 +1,17 @@
+{
+    "name": "paranga_study/abrahao",
+    "description": "gerenciamento de pacotes para grupo de estudo paranga study!",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Test\\": "test/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abrahao Bittar",
+            "email": "abrahaobittar@gmail.com"
+        }
+    ],
+    "require": {}
+}

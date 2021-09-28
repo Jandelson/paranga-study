@@ -1,10 +1,10 @@
 <?php
 
-require '../src/Conexao.php';
+namespace Test;
 
-echo 'law';
-echo 'law2';
+require_once '../vendor/autoload.php';
 
+use App\Conexao;
 
-$conexaoBanco = new ConexaoBanco();
+$conexaoBanco = new Conexao();
 var_dump($conexaoBanco->novaConexao());
