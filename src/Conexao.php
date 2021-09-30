@@ -4,28 +4,37 @@ namespace App;
 
 require '../vendor/autoload.php';
 
-class Conexao {
+use PDO;
+use PDOException;
 
-private static $novaConexao;
-private $usuario = 'abrahao';
-private $senha = 'R9lx3uh%';
-private $nomeBanco = 'agenda';
-private $host = '127.0.0.1';
+class Conexao
+{
+    private static $novaConexao = null;
+    private $usuario = 'abrahao';
+    private $senha = 'R9lx3uh%';
+    private $nomeBanco = 'agenda';
+    private $host = '127.0.0.1';
 
-    public function __construct() {
+    public function __construct()
+    {
         try {
-            self::$instanciaConexao = new PDO("mysql:host={$this->host};
+            self::$novaConexao = new PDO("mysql:host={$this->host};
             dbname={$this->nomeBanco}", $this->usuario, $this->senha);
-
-            echo 'Conexao Realizada com sucesso! <br>';
-        } catch (PDOException $erro) {
-            echo 'ERRO: '. $erro->getMessage();
+        } catch (PDOException $e) {
+            echo 'ERRO: ' . $e->getMessage();
         }
-
-        return self::novaConexao;
     }
 
-    public static function prepararQuery($sql) {
-        return self::novaConexao
+    public static function get()
+    {
+        if (self::$novaConexao != null) {
+            return self::$novaConexao;
+        }
+        self::$novaConexao = new Conexao();
+    }
+
+    public static function prepare($sql)
+    {
+        return self::get()->prepare($sql);
     }
 }

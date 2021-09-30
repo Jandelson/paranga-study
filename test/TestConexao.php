@@ -7,4 +7,4 @@ require_once '../vendor/autoload.php';
 use App\Conexao;
 
 $conexaoBanco = new Conexao();
-var_dump($conexaoBanco->novaConexao());
+var_dump($conexaoBanco->get());
