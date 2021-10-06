@@ -25,7 +25,7 @@ abstract class Crud extends Conexao
         $comando->fetchAll();
     }
 
-    public function delete($id, $indice)
+    public function deletar($id, $indice)
     {
         $sql = "SELECT * FROM {$this->tabela} WHERE $indice = :id";
         $comando = Conexao::prepare($sql);

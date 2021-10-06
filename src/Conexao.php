@@ -18,6 +18,7 @@ class Conexao
     public function __construct()
     {
         try {
+            echo 'conexão ok';
             self::$novaConexao = new PDO("mysql:host={$this->host};
             dbname={$this->nomeBanco}", $this->usuario, $this->senha);
         } catch (PDOException $e) {
