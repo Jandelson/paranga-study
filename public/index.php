@@ -2,10 +2,19 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Agenda\Connection;
 use Agenda\Page;
 
-$connection = Connection::Conn();
+$dados = [];
+$id = 0;
 
-$contato = $connection->query("select * from contato")->fetchAll();
-Page::view('index', $contato);
+if ($_SERVER['REQUEST_URI']) {
+    $request = explode('/', $_SERVER['REQUEST_URI']);
+
+    $pagina = $request[1];
+    $id = $request[2];
+
+    if ($pagina == "") {
+        $pagina = 'index';
+    }
+    echo Page::view($pagina, $id, $dados);
+}

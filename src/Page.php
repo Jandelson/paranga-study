@@ -2,22 +2,22 @@
 
 namespace Agenda;
 
+use Agenda\Contato;
 class Page {
 
-    public static function view(string $view, array $dados)
+    public static function view(string $view = 'index', $id , array $dados = [])
     {
-        $fileHtml = file_get_contents('../view/' . $view . '.html');
-        $htmlRplace = [];
-        $htmlRplaceValues = [];
-        foreach ($dados as $dado) {
-            foreach ($dado as $key => $value) {
-                $pos = strpos($fileHtml,'%' . $key . '%');
-                if ($pos > 0) {
-                    $htmlRplace[] = '%' . $key . '%';
-                    $htmlRplaceValues[] = $value;
-                }
-            }
+        if (empty($dados)) {
+            $dados = (new Contato)->all();
         }
-        echo str_replace($htmlRplace, $htmlRplaceValues, $fileHtml);
+
+        if ($id > 0) {
+            $id = (int) $id;
+            $dados = (new Contato)->getById($id);
+        }
+
+        include('../view/layout/app.php');
+        include('../view/' . $view . '.php');
+        include('../view/layout/footer.php');
     }
 }
