@@ -1,5 +1,17 @@
 <?php
 require 'header.php';
+
+use Controller\agendaController;
+$use = new agendaController;
+
+if($_POST && !empty($_POST)){
+    $formAjax = $use->TrayInsertAgenda();
+
+    if(!empty($formAjax)){
+        echo $formAjax;
+        exit;
+    }
+}
 ?>
 
 <main class="container p-5">

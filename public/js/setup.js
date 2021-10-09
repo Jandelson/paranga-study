@@ -138,7 +138,7 @@ function sendAjax(start, end) {
     var data_end = FiltraData(end, 'end');
 
     $.ajax({
-        url: "../src/Controller/agendaController.php",
+        url: "agenda.php",
         type: "post",
         data: {
             'titulo': values[0],
@@ -168,13 +168,17 @@ function FiltraData(data, origem) {
     var dia, mes, ano, hora, gethora, getminuto, getsegundo;
     hoje = new Date;
 
-    dia = data.getDay();
-    mes = data.getMonth();
+    dia = data.getDate();
+    mes = data.getUTCMonth() + 1;
     ano = data.getFullYear();
 
     gethora = data.getHours();
     getminuto = data.getMinutes();
     getsegundo = data.getSeconds();
+
+    if(mes < 10){
+        mes = '0'+mes;
+    }
 
     if (gethora == 0 || gethora == '0') {
         gethora = hoje.getHours() + 1;
