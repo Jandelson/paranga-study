@@ -4,5 +4,4 @@
 #### Observações Gerais
 
 
-
-Pessoal, vão na aba projects para observações gerais de como começar!
+Este projeto está sendo desenvolvido em grupo, com o objetivo de melhorar os conhecimentos e evoluir com o projeto ao longo do tempo.

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins';
+}
+
+body {
+    background: #f2f2f5;
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: #242424;
+}
+
+.agendamento-h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.alert-dark {
+    background: #00574b;
+}
