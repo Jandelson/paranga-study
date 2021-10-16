@@ -8,7 +8,7 @@ if($_POST && !empty($_POST)){
     $formAjax = $use->TrayInsertAgenda();
 
     if(!empty($formAjax)){
-        echo $formAjax;
+        echo json_encode($formAjax);
         exit;
     }
 }

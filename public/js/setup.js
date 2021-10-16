@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         select: function (arg) {
             var title = CapturaTexto();
             if (title != '') {
+                sendAjax(arg.start, arg.end);
                 calendar.addEvent({
                     title: title,
                     start: arg.start,
                     end: arg.end,
                     allDay: arg.allDay
                 });
-                sendAjax(arg.start, arg.end);
             }
             calendar.unselect()
         },
@@ -136,10 +136,14 @@ function sendAjax(start, end) {
     var values = CapturaTexto(true);
     var data_start = FiltraData(start, 'start');
     var data_end = FiltraData(end, 'end');
+    var resp = false;
 
     $.ajax({
         url: "agenda.php",
-        type: "post",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false, // HERE
         data: {
             'titulo': values[0],
             'anotacao': values[1],
@@ -149,12 +153,11 @@ function sendAjax(start, end) {
             'end': data_end,
         },
         success: function (response) {
-            console.log(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+            resp = true;
         }
     });
+
+    return resp;
 }
 
 /**
@@ -176,8 +179,8 @@ function FiltraData(data, origem) {
     getminuto = data.getMinutes();
     getsegundo = data.getSeconds();
 
-    if(mes < 10){
-        mes = '0'+mes;
+    if (mes < 10) {
+        mes = '0' + mes;
     }
 
     if (gethora == 0 || gethora == '0') {
