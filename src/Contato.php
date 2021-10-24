@@ -33,4 +33,8 @@ class Contato {
             "delete from contato where id_contato = " . $id
         )->fetchObject();
     }
+
+    public function create($request)
+    {
+    }
 }

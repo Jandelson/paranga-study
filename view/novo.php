@@ -1,5 +1,5 @@
 <div class="container">
-    <form>
+    <form action="/cadastro">
         <div class="form-group">
             <label>Nome</label>
             <input type="text" class="form-control" id="nome" name="nome">
