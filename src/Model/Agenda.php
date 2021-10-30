@@ -10,6 +10,24 @@ use DateTime;
 class Agenda extends Connection
 {
 
+    /**
+     * Metodo busca todos os agendamentos
+     * @param Int $idUsu
+     * @return Array
+     */
+
+     public function AllgetEventsDb($idUsu){
+         $sql = $this->Conn()->prepare('SELECT * FROM agenda WHERE id_contato = :idUsu');
+         $sql->bindParam(':idUsu', $idUsu);
+         $sql->execute();
+
+         $dados = $sql->fetchAll(\PDO::FETCH_ASSOC);
+     }
+
+    /**
+     * Metodo Insere dados para agendamento
+     * @return String
+     */
     public function InsertAgenda()
     {
 
@@ -31,7 +49,7 @@ class Agenda extends Connection
         $sql->bindParam(':tipo', $tipo);
         $sql->execute();
 
-        return 'FOI';
+        return 'Send';
     }
 
     /**

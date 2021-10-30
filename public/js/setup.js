@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        
         headerToolbar: {
-            left: 'prev,next today',
+            left: 'prev,next',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         },
         editable: true,
-        dayMaxEvents: true, // allow "more" link when too many events
+        // dayMaxEvents: true, // allow "more" link when too many events
         events: [{
             title: 'All Day Event',
             start: '2021-09-01'

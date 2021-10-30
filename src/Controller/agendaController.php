@@ -8,10 +8,20 @@ use Models\Agenda;
  */
 class agendaController extends Agenda
 {
-    
+    /**
+     * Metodo Insere dados na agenda!
+     */
     public function TrayInsertAgenda()
     {
         return $this->InsertAgenda();
+    }
+
+    /**
+     * Metodo Traz dados da agenda!
+     * @param Int $idUsu
+     */
+    public function AllgetEvents($idUsu){
+        $this->AllgetEventsDb($idUsu);
     }
 }
 

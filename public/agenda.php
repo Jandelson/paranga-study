@@ -4,6 +4,7 @@ require 'header.php';
 use Controller\agendaController;
 $use = new agendaController;
 
+$agenda = $use->AllgetEvents($idUsu);
 if($_POST && !empty($_POST)){
     $formAjax = $use->TrayInsertAgenda();
 
@@ -44,7 +45,7 @@ if($_POST && !empty($_POST)){
                                     <div class="col-md-12">
                                         <label for="url">Url</label>
                                         <input class="form-control" id="url" type="text">
-                                        <input id="idContato" type="hidden" value="1">
+                                        <input id="idContato" type="hidden" value="<?=$idUsu?>">
                                     </div>
                                     <div class="col-md-12">
                                         <label for="tipo">Tipo do evento</label>

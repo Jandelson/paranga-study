@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Models;
 
 use Core\Connection;
@@ -11,7 +12,8 @@ class Users extends Connection
      * COnstrutor ja definindo conexao
      * @param Void
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->Conn = Users::Conn();
     }
 
@@ -19,7 +21,8 @@ class Users extends Connection
      * Listando Todos os cadatros do banco
      * @return Array
      */
-    public function listAllUsers(){
+    public function listAllUsers()
+    {
         $contatos = $this->Conn->query("SELECT * FROM contato")->fetchAll();
         return $contatos;
     }
@@ -28,14 +31,15 @@ class Users extends Connection
      * Metodo para mostrar meus dados
      * @return Array
      */
-    public function getMeuDados(){
+    public function getMeuDados()
+    {
         $dados = [];
         $basico = $this->dadosBasico(1);
         $endereco = $this->dadosEndereco(1);
 
         $dados[] = array(
-            'basico'=> $basico,
-            'endereco'=> $endereco,
+            'basico' => $basico,
+            'endereco' => $endereco,
         );
         return $dados;
     }
@@ -46,14 +50,14 @@ class Users extends Connection
      * @param Int $id
      * @return Array
      */
-    public function dadosBasico($id){
+    public function dadosBasico($id)
+    {
         $sql = $this->Conn->prepare("SELECT * FROM contato where id_contato = :id");
         $sql->bindParam(':id', $id);
         $sql->execute();
         $dados = $sql->fetch(\PDO::FETCH_ASSOC);
 
         return $dados;
-        
     }
 
     /**
@@ -62,13 +66,33 @@ class Users extends Connection
      * @param Int $id
      * @return Array
      */
-    public function dadosEndereco($id){
+    public function dadosEndereco($id)
+    {
         $sql = $this->Conn->prepare("SELECT * FROM endereco where id_endereco = :id");
         $sql->bindParam(':id', $id);
         $sql->execute();
         $dados = $sql->fetch(\PDO::FETCH_ASSOC);
 
         return $dados;
-        
+    }
+
+    public function logarUsuario()
+    {
+        $sql = $this->Conn->prepare('SELECT email,nome,id_contato FROM contato where email = :e ');
+        $sql->bindParam(':e', $_POST['email']);
+        $sql->execute();
+        session_start();
+        $dados = $sql->fetch(\PDO::FETCH_ASSOC);
+        if (!empty($dados)) {
+            $_SESSION['usuario'] = true; //Validando Sessão no Controller
+
+
+            $_SESSION['id'] = $dados['id_contato'];
+            $_SESSION['nome'] = $dados['nome'];
+            echo '<script>window.location.href="home"</script>';
+            return true;
+        } else {
+            return false;
+        }
     }
 }
