@@ -1,40 +1,24 @@
 <?php
 
-namespace Agenda;
+declare(strict_types=1);
 
-use Agenda\Connection;
+namespace Agenda;
 
 class Contato {
     
-    public $connection;
+    private $nome;
+    private $email;
+    private $telefone;
 
-    public function __construct()
+    public function __construct(string $nome, string $email, string $telefone)
     {
-        $this->connection = Connection::Conn();   
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->telefone = $telefone;
     }
 
-    public function all(): array
+    public function getContato(): Contato
     {
-        return $this->connection->query(
-            "select * from contato"
-        )->fetchAll();
-    }
-
-    public function getById($id): object
-    {
-        return $this->connection->query(
-            "select * from contato where id_contato = " . $id
-        )->fetchObject();
-    }
-
-    public function deleteById($id): array
-    {
-        return $this->connection->query(
-            "delete from contato where id_contato = " . $id
-        )->fetchObject();
-    }
-
-    public function create($request)
-    {
+        return $this;
     }
 }

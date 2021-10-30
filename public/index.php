@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Agenda\Page;
+use Agenda\Controller;
 
 $dados = [];
 $id = 0;
@@ -16,5 +16,12 @@ if ($_SERVER['REQUEST_URI']) {
     if ($pagina == "") {
         $pagina = 'index';
     }
-    echo Page::view($pagina, $id, $dados);
+
+    if (isset($_POST)) {
+        $route = $_SERVER['REQUEST_URI'];
+        $dados = $_POST;
+        Controller::route($route, $dados);
+    }
+
+    echo Controller::view($pagina, $id, $dados);
 }
