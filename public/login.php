@@ -27,7 +27,7 @@ ob_start();
                             Beneficios
                         </h5>
                     </center>
-                    <div class="card p-2 card-animado">
+                    <div class="card p-2 card-animado shadow">
                         <small>
                             Controle seu horario com o intevalo minimos de 30 minutos, isso evita que eventos conflitem!
                         </small>
@@ -39,7 +39,7 @@ ob_start();
                             Filtros!
                         </h5>
                     </center>
-                    <div class="card p-2 card-animado small">
+                    <div class="card p-2 card-animado small shadow">
                         <ul>
                             <li>Dentista</li>
                             <li>Medico</li>
@@ -55,7 +55,7 @@ ob_start();
                             Para o Escritorio
                         </h5>
                     </center>
-                    <div class="card p-2 card-animado">
+                    <div class="card p-2 card-animado shadow">
                         <small>
                             Para seu consultorio á a possibilidade de que seus cliente agende horarios de acorodo com as disponibilidade,
                             assim evitando que acha algum imprevisto por agendamentos!
@@ -69,7 +69,7 @@ ob_start();
                             Uso Pessoal e Profissional
                         </h5>
                     </center>
-                    <div class="card p-2 card-animado small">
+                    <div class="card p-2 card-animado small shadow">
                         <small>
                             Como o agendamento é administrado pela logica, é ate mesmo possivel em seu espediente agendar para uso profissional ou pessoal,
                             com isso aquela data especificado e horario estçao indisponivel para agendamentos!
@@ -97,11 +97,10 @@ ob_start();
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                         <form action="" method="POST">
-                                            <div class="col-md-12">Insira seu usuario para acessar</div>
                                             <div class="row mt-3 p-2">
                                                 <div class="col-md-12">
-                                                    <label for="inputEmail4" class="form-label">Email</label>
-                                                    <input type="email" name="email" class="form-control" id="inputEmail4">
+                                            <div class="col-md-12">Insira seu usuario para acessar</div>
+                                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
                                                 </div>
                                                 <center>
                                                     <a href="home">

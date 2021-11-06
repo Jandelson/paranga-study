@@ -1,7 +1,8 @@
 <?php
 namespace Core;
 
-class Connection
+use Controller\modalController;
+class Connection extends modalController
 {
     /* Consumir o mesmo statico Class::Conn() */
     public static function Conn(){

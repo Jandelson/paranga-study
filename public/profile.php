@@ -29,15 +29,15 @@ $meuDados = $use->MeusDados()[0];
             <div class="card shadow mt-4">
                 <div class="card-body">
                     <div class="row">
-                        <form action="">
+                        <form action="" method="POST">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                        aria-selected="true">Basico</button>
+                                        aria-selected="true"><i class="fa fa-id-card-o" aria-hidden="true"></i> Basico</button>
                                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-profile" type="button" role="tab"
-                                        aria-controls="nav-profile" aria-selected="false">Endereço</button>
+                                        aria-controls="nav-profile" aria-selected="false"><i class="fa fa-home" aria-hidden="true"></i> Endereço</button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
@@ -46,15 +46,22 @@ $meuDados = $use->MeusDados()[0];
                                     <div class="row mt-3 p-2">
                                         <div class="col-md-6">
                                             <label for="inputnome4" class="form-label">Nome</label>
-                                            <input type="nome" required value="<?= $meuDados['basico']['nome'] ?>" class="form-control" id="inputnome4">
+                                            <input name="nome" type="nome" required value="<?= $meuDados['basico']['nome'] ?>" class="form-control" id="inputnome4">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputEmail4" class="form-label">Email</label>
-                                            <input type="email" required value="<?=$meuDados['basico']['email'] ?>" class="form-control" id="inputEmail4">
+                                            <input name="email" type="email" required value="<?=$meuDados['basico']['email'] ?>" class="form-control" id="inputEmail4">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputnumber4" class="form-label">Telefone</label>
-                                            <input type="text" required value="<?=$meuDados['basico']['telefone'] ?>" class="form-control" id="inputnumber4">
+                                            <input name="telefone" type="text" required value="<?=$meuDados['basico']['telefone'] ?>" class="form-control" id="inputnumber4">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputnumber5" class="form-label">Tipo ( <small>Agente Profissional será visivel a todos</small> )</label>
+                                            <select class="form-select" name="id_tipo_contato" id="inputnumber5">
+                                                <option <?php if($meuDados['basico']['id_tipo_contato'] == 1){echo 'selected';} ?> value="1">Pessoal</option>
+                                                <option <?php if($meuDados['basico']['id_tipo_contato'] == 2){echo 'selected';} ?> value="2">Profissional</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -63,26 +70,26 @@ $meuDados = $use->MeusDados()[0];
                                     <div class="row mt-3 p-2">
                                         <div class="col-md-6">
                                             <label for="Endereco" class="form-label">Endereco</label>
-                                            <input type="text" required value="<?=$meuDados['endereco']['logradouro'] ?>" class="form-control" id="Endereco"
+                                            <input type="text" required value="<?=$meuDados['endereco']['logradouro'] ?>" name="logradouro" class="form-control" id="Endereco"
                                                 placeholder="1234 Main St">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="inputBairro" class="form-label">Bairro</label>
-                                            <input type="text" required value="<?=$meuDados['endereco']['bairro'] ?>" class="form-control" id="inputBairro"
+                                            <input type="text" required value="<?=$meuDados['endereco']['bairro'] ?>" name="bairro" class="form-control" id="inputBairro"
                                                 placeholder="1234 Main St">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="inputNumero" class="form-label">Nº</label>
-                                            <input type="text" required value="<?=$meuDados['endereco']['numero'] ?>" class="form-control" id="inputNumero"
+                                            <input type="text" required value="<?=$meuDados['endereco']['numero'] ?>" name="numero" class="form-control" id="inputNumero"
                                                 placeholder="1234 Main St">
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label for="inputCity" class="form-label">City</label>
-                                            <input type="text" required value="<?=$meuDados['endereco']['cidade'] ?>" class="form-control" id="inputCity">
+                                            <input type="text" required value="<?=$meuDados['endereco']['cidade'] ?>" name="cidade" class="form-control" id="inputCity">
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label for="inputState" class="form-label">State</label>
-                                            <select id="inputState" class="form-select">
+                                            <select id="inputState" name="uf" class="form-select">
                                                 <option>Selecione</option>
                                                 <option <?php if($meuDados['endereco']['uf'] == 'AC'){ echo 'selected';} ?> value="AC">AC</option>
                                                 <option <?php if($meuDados['endereco']['uf'] == 'AL'){ echo 'selected';} ?> value="AL">AL</option>
@@ -116,16 +123,17 @@ $meuDados = $use->MeusDados()[0];
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label for="complemento" class="form-label">Complemento</label>
-                                            <input type="text" required value="<?=$meuDados['endereco']['complemento'] ?>" class="form-control" id="complemento">
+                                            <input type="text" name="complemento" required value="<?=$meuDados['endereco']['complemento'] ?>" class="form-control" id="complemento">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <center>
 
-                                <button class="btn btn-success w-50 mt-5">
+                                <button type="submit" class="btn btn-success w-50 mt-5 shadow">
                                     Salvar
                                 </button>
+                                <input type="hidden" name="acao" value="Salvar">
                             </center>
                         </form>
                     </div>
@@ -135,4 +143,9 @@ $meuDados = $use->MeusDados()[0];
     </div>
 </main>
 <?php 
-require 'footer.php'; ?>
+require 'footer.php';
+if(!empty($_POST) && $_POST['acao'] == 'Salvar'){
+    $use->updateDados($idUsu);
+}
+
+?>

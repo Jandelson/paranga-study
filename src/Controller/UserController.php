@@ -20,5 +20,13 @@ class UserController extends Users
      public function MeusDados(){
          return $this->getMeuDados();
      }
+
+     /**
+      * Update de Dados do usuario
+      * @param Integer $idAluno
+      */
+      public function updateDados($idAluno){
+        return $this->trayDadosUpdate($idAluno);
+      }
  }
  
