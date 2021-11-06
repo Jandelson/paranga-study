@@ -26,7 +26,17 @@ CREATE TABLE contato
     CONSTRAINT fk_Endereco FOREIGN KEY (id_endereco) REFERENCES endereco (id_endereco),
     CONSTRAINT fk_TipoContato FOREIGN KEY (id_tipo_contato) REFERENCES tipocontato (id_tipo_contato)
 );
-
+--
+CREATE TABLE agenda
+(
+    id_contato integer PRIMARY KEY AUTO_INCREMENT,
+    data_start datetime DEFAULT NULL,
+    data_end datetime DEFAULT NULL,
+    titulo_agenda varchar(255),
+    anotacao_agenda varchar(255),
+    url_event varchar(255),
+    tipo integer,
+);
 
 -- ON UPDATE CASCADE 
 -- ON DELETE CASCADE;
