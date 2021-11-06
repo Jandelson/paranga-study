@@ -9,10 +9,12 @@ body{
 .card-animado{
     transform: translateX(0px) rotateY(180deg);
     transition-duration: 0.5s;
-    color: white;
+    color: #2a1e6c;
+    background-color: #2a1e6c;
 }
 .card-animado:hover {
-    color: gray;
     transform: translateX(0px) rotateY(0deg);
+    color: white;
     transition-duration: 1s;
+    background-color: #db4dd3;
   }
