@@ -9,13 +9,16 @@ namespace App;
 
 require_once '../vendor/autoload.php';
 
-if(isset($_POST['evento'])) {
-    switch ($_POST['evento']) {
+
+if(isset($_POST['data'])) {
+    switch ($_POST['data'][0]) {
         case 'inserir':
             return TRUE;
-            break;
+
         case 'deletar':
             return TRUE;
             break;
     }
+} else {
+    echo 'Nao veio $POST';
 }

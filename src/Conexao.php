@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App;
 
 require '../vendor/autoload.php';
@@ -9,33 +10,18 @@ use PDOException;
 
 class Conexao
 {
-    private static $novaConexao = null;
-    private $usuario = 'abrahao';
-    private $senha = 'R9lx3uh%';
-    private $nomeBanco = 'agenda';
-    private $host = '127.0.0.1';
+    private static $db;
+    public static $usuario = "abrahao";
+    public static $senha = "R9lx3uh%";
+    public static $dsn = "mysql:host=127.0.0.1;dbname=agenda";
 
-    public function __construct()
-    {
-        try {
-            echo 'conexão ok';
-            self::$novaConexao = new PDO("mysql:host={$this->host};
-            dbname={$this->nomeBanco}", $this->usuario, $this->senha);
-        } catch (PDOException $e) {
-            echo 'ERRO: ' . $e->getMessage();
-        }
-    }
+    //Para impedir de clonar ou instanciar a classe!
+    final private function __construct() { }
+    final private function __clone() { }
 
-    public static function get()
+    public static function novaConexao()
     {
-        if (self::$novaConexao != null) {
-            return self::$novaConexao;
-        }
-        self::$novaConexao = new Conexao();
-    }
-
-    public static function prepare($sql)
-    {
-        return self::get()->prepare($sql);
+        self::$db = new PDO(self::$dsn, self::$usuario, self::$senha);
+        return self::$db;
     }
 }

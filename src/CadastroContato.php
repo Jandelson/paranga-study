@@ -6,15 +6,17 @@
     <script src="js/botao_acao.js"></script>
 </head>
 <body>
-    <label>Nome: </label><br>
-    <input type="text" id="cadastro_contato_nome" name="cadastro_contato_nome"><br>
+    <form name="contato" id="contato">
+        <label>Nome: </label><br>
+        <input type="text" id="cadastro_contato_nome" name="cadastro_contato_nome"><br>
 
-    <label>Sobrenome</label><br>
-    <input type="text" id="cadastro_contato_sobrenome" name="cadastro_contato_sobrenome"><br>
+        <label>E-Mail</label><br>
+        <input type="text" id="cadastro_contato_email" name="cadastro_contato_email"><br>
 
-    <label>Celular</label><br>
-    <input type="number" id="cadastro_contato_celular" name="cadastro_contato_celular"><br>
+        <label>Celular</label><br>
+        <input type="number" id="cadastro_contato_celular" name="cadastro_contato_celular"><br>
 
-    <button type="button" name="cadastro_contato_cadastrar" value="inserir">Cadastrar</button>
+        <button type="button" name="cadastro_contato_cadastrar" value="inserir">Cadastrar</button>
+    </form>
 </body>
 </html>
