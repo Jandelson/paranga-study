@@ -12,14 +12,17 @@
         foreach ($dados as $dado) {
           echo '
           <tr>
+          <form action="/route/excluir" method="post">
+          <input type="hidden" name="id_contato" value=' . $dado['id_contato'] . '>
           <td scope="col">' . $dado['nome'] . '</td>
-          <td scope="col">' . $dado['email'] . '</th>
-          <td scope="col">' . $dado['telefone'] . '</th>
-          <td scope="row">
+          <td scope="col">' . $dado['email'] . '</td>
+          <td scope="col">' . $dado['telefone'] . '</td>
+          <td>
             <a type="button" href="/editar/' . $dado['id_contato'] . '" class="btn btn-secondary">Editar</a>
-            <a type="button" href="/excluir/' . $dado['id_contato'] . '" class="btn btn-danger">Excluir</a>
             <a type="button" href="/agendar/' . $dado['id_contato'] . '" class="btn btn-success">Agendar</a>
-          </th>
+            <input class="btn btn-danger" type="submit" value="Excluir">
+          </td>
+          </form>
           </tr>';
         }
       ?>

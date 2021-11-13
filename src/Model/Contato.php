@@ -3,6 +3,7 @@
 namespace Agenda\Model;
 
 use Agenda\Connection;
+use Agenda\Contato as DadosContato;
 
 class Contato {
     
@@ -27,14 +28,26 @@ class Contato {
         )->fetchObject();
     }
 
-    public function deleteById($id): array
+    public function deleteById($id): bool
     {
-        return $this->connection->query(
-            "delete from contato where id_contato = " . $id
-        )->fetchObject();
+        $sql = "delete from contato where id_contato=?";
+        $delete = $this->connection->prepare($sql)->execute(
+            [$id]
+        );
+        return $delete;
     }
 
-    public function create($request)
+    public function create(DadosContato $dadosContato): bool
     {
+        $sql = "insert into contato (nome,email,telefone,id_endereco) values (?,?,?,?)";
+        $insert = $this->connection->prepare($sql)->execute(
+            [
+                $dadosContato->nome(),
+                $dadosContato->email(),
+                $dadosContato->telefone(),
+                $dadosContato->endereco()
+            ]
+        );
+        return $insert;
     }
 }
