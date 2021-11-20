@@ -92,10 +92,15 @@ class Users extends Connection
      * @param Int $id
      * @return Array
      */
-    public function dadosBasico($id)
+    public function dadosBasico($id, $email = null)
     {
-        $sql = $this->Conn->prepare("SELECT * FROM contato where id_contato = :id");
-        $sql->bindParam(':id', $id);
+        if($email == null){
+            $sql = $this->Conn->prepare("SELECT * FROM contato where id_contato = :id");
+            $sql->bindParam(':id', $id);
+        }else{
+            $sql = $this->Conn->prepare("SELECT * FROM contato where email = :em");
+            $sql->bindParam(':em', $email);
+        }
         $sql->execute();
         $dados = $sql->fetch(\PDO::FETCH_ASSOC);
 
@@ -142,5 +147,10 @@ class Users extends Connection
         $this->ModalError('Ops!', 'Não encontramos seu cadastro, tente novamente', 'login');
             return false;
         }
+    }
+
+    public function newCad(){
+        
+        $this->dadosBasico(0, $_POST['email']);
     }
 }

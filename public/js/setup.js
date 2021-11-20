@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        
+
         headerToolbar: {
             left: 'prev,next',
             center: 'title',
@@ -210,4 +210,33 @@ function limpaCampo() {
     $("#anotacao")[0].value = '';
     $("#tipo")[0].value = '';
     $("#url")[0].value = '';
+}
+
+
+/**
+ * Valida se a senha é a mesma 
+ * quando o usuário digita 
+ * novamente
+ * 
+ * @returns {void} 
+ */
+function confirmPassword() {
+    var password = document.getElementById("password");
+    var confirm_password = document.getElementById("confirm_password");
+    var msgValid = document.getElementById("msgValid");
+    
+    msgValid.setAttribute('class', '');
+    msgValid.innerText = '';
+    if(password.value != '' && confirm_password.value != ''){
+        if (password.value != confirm_password.value) {
+            password.value = '';
+            confirm_password.value = '';
+            msgValid.setAttribute('class', 'invalid-feedback d-block');
+            msgValid.innerText = 'Senhas diferentes, tente novamente!';
+        } else {
+            msgValid.setAttribute('class', 'valid-feedback d-block');
+            msgValid.innerText = 'Senha válidada!';
+            confirm_password.setCustomValidity('');
+        }
+    }
 }

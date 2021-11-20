@@ -56,4 +56,11 @@ class authUserController extends Users
         session_unset($_SESSION);
         header('Location: login');
     }
+
+    /**
+     * Criar novo cadastro de usuario!
+     */
+    public function safeCad(){
+        return $this->newCad();
+    }
 }

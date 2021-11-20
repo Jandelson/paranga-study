@@ -3,10 +3,11 @@ $login = true;
 require 'header.php';
 
 use Controller\authUserController;
+
 $loginUser = new authUserController;
 
 if (!is_writable(session_save_path())) {
-    echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
+    echo 'Session path "' . session_save_path() . '" is not writable for PHP!';
 }
 ob_start();
 ?>
@@ -99,7 +100,7 @@ ob_start();
                                         <form action="" method="POST">
                                             <div class="row mt-3 p-2">
                                                 <div class="col-md-12">
-                                            <div class="col-md-12">Insira seu usuario para acessar</div>
+                                                    <div class="col-md-12">Insira seu usuario para acessar</div>
                                                     <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
                                                 </div>
                                                 <center>
@@ -116,12 +117,30 @@ ob_start();
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <form action="" method="post">
+                                <form class="was-validated" action="" method="post">
                                     <center>
-                                        <h3 class="mt-2">Novo Cadastro</h3>
+                                        <h3 class="mt-2">Novo Cadastro </h3>
+                                        <small>Básico, após logar ser precisa finalizar o cadastro</small>
                                     </center>
-                                    <label for="email">Email</label>
-                                    <input class="form-control" type="email" id="email" name="email">
+                                    <div class="mb-3">
+                                        <label for="email">Email</label>
+                                        <input class="form-control" type="email" id="email" name="email" required>
+                                        <div class="invalid-feedback">Insera um email válido </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password">Senha</label>
+                                        <input class="form-control" type="password" id="password" onblur="confirmPassword()" name="password" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Rpassword">Confime a senha</label>
+                                        <input class="form-control" type="password" id="confirm_password" onblur="confirmPassword()" name="Rpassword" required>
+                                    <div class="" id='msgValid'></div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success w-50 mt-5">
+                                        Cadastrar
+                                    </button>
+                                    <input type="hidden" value="safe" name="safe">
                                 </form>
                             </div>
                         </div>
@@ -137,5 +156,8 @@ require 'footer.php';
 if (isset($_POST) && !empty($_POST['login'])) {
     $loginUser->AutenticaUsuario();
 }
+if (isset($_POST) && !empty($_POST['safe'])) {
+    $loginUser->safeCad();
+}
 
- ?>
+?>
