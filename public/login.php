@@ -5,10 +5,6 @@ require 'header.php';
 use Controller\authUserController;
 
 $loginUser = new authUserController;
-
-if (!is_writable(session_save_path())) {
-    echo 'Session path "' . session_save_path() . '" is not writable for PHP!';
-}
 ob_start();
 ?>
 

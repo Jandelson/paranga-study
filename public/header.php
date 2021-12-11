@@ -57,7 +57,7 @@ if (empty($login)) {
                     </ul>
                     <form class="d-flex">
                         <b class="text-white ">Olá <?=$nomeUsu?> </b>
-                        <a class="text-white" href="login"> [ Sair ]</a>
+                        <a class="text-white" href="logout"> [ Sair ]</a>
                     </form>
                 </div>
             </div>

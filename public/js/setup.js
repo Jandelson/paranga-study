@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var title, valida = '';
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -12,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
         selectable: true,
         selectMirror: true,
         select: function (arg) {
-            var title = CapturaTexto();
-            if (title != '') {
-                sendAjax(arg.start, arg.end);
+            title = CapturaTexto();
+            valida = validaAjax(arg.start, arg.end, true);
+            if (title != '' && valida) {
                 calendar.addEvent({
                     title: title,
                     start: arg.start,
@@ -120,43 +121,71 @@ function CapturaTexto(origem) {
         }
     } else {
         myModal.show();
-        return '';
     }
 
 }
 
 /**
+ * Função Abre Modal
+ * @param {String} titulo 
+ * @param {String} msg 
+ */
+function ChamaModal(titulo, msg){
+    document.querySelector('#tituloModal').innerText = titulo;
+    document.querySelector('#msgModal').innerText = msg;
+    var myModal = new bootstrap.Modal(document.getElementById('ChamaModal'), {
+        keyboard: false
+    })    
+    myModal.show();
+}
+
+/**
  * Envia dados Via ajax
- * @param {Date} start
- * @param {Date} end
+ * @param {Date}    start
+ * @param {Date}    end
+ * @param {Boolean} Safe
  * 
  * @returns {Boolean}
  */
-function sendAjax(start, end) {
-
-    var values = CapturaTexto(true);
-    var data_start = FiltraData(start, 'start');
-    var data_end = FiltraData(end, 'end');
+function validaAjax(start, end, safe) {
     var resp = false;
+    var values = CapturaTexto(true);
+    var Hoje = FiltraData('', '', false);
 
-    $.ajax({
-        url: "agenda.php",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: false, // HERE
-        data: {
-            'titulo': values[0],
-            'anotacao': values[1],
-            'tipo': values[2],
-            'url': values[3],
-            'start': data_start,
-            'end': data_end,
-        },
-        success: function (response) {
-            resp = true;
+    var data_start = FiltraData(start, 'start', safe);
+    var data_end = FiltraData(end, 'end', safe);
+    if ((Hoje[2] <= data_start[2])) {
+        if ((Hoje[1] <= data_start[1])) {
+            if (Hoje[0] <= data_start[0]) {
+                if (safe) {
+                    $.ajax({
+                        url: "agenda.php",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: false, // HERE
+                        data: {
+                            'titulo': values[0],
+                            'anotacao': values[1],
+                            'tipo': values[2],
+                            'url': values[3],
+                            'start': data_start,
+                            'end': data_end,
+                        },
+                        success: function (response) {
+                            resp = true;
+                        }
+                    });
+                }
+            }else{
+                ChamaModal('Dia inválido','Insira uma data válida');
+            }
+        }else{
+            ChamaModal('Mês inválido','Insira um mês valido');
         }
-    });
+    }else{
+        ChamaModal('Ano inválido','Insira ano valido');
+    }
 
     return resp;
 }
@@ -165,39 +194,51 @@ function sendAjax(start, end) {
  * Metodo para tratar a data
  * @param {Date} data 
  * @param {String} origem 
+ * @param {Boolean} safe 
  * 
  * @returns {String}
  */
-function FiltraData(data, origem) {
+function FiltraData(data, origem, safe) {
     var dia, mes, ano, hora, gethora, getminuto, getsegundo;
+    var ret = '';
     hoje = new Date;
 
-    dia = data.getDate();
-    mes = data.getUTCMonth() + 1;
-    ano = data.getFullYear();
+    if (safe) {
+        dia = data.getDate();
+        mes = data.getUTCMonth() + 1;
+        ano = data.getFullYear();
 
-    gethora = data.getHours();
-    getminuto = data.getMinutes();
-    getsegundo = data.getSeconds();
+        gethora = data.getHours();
+        getminuto = data.getMinutes();
+        getsegundo = data.getSeconds();
 
-    if (mes < 10) {
-        mes = '0' + mes;
-    }
-
-    if (gethora == 0 || gethora == '0') {
-        gethora = hoje.getHours() + 1;
-        getminuto = '00';
-        getsegundo = hoje.getSeconds();
-
-        if (origem == 'end') {
-            getminuto = 30;
+        if (mes < 10) {
+            mes = '0' + mes;
         }
-        hora = gethora + ':' + getminuto + ':' + getsegundo;
 
+        if (gethora == 0 || gethora == '0') {
+            gethora = hoje.getHours() + 1;
+            getminuto = '00';
+            getsegundo = hoje.getSeconds();
+
+            if (origem == 'end') {
+                getminuto = 30;
+            }
+            hora = gethora + ':' + getminuto + ':' + getsegundo;
+
+        } else {
+            hora = gethora + ':' + getminuto + ':' + getsegundo;
+        }
+        ret = [dia, mes, ano, hora];
     } else {
-        hora = gethora + ':' + getminuto + ':' + getsegundo;
+        dia = hoje.getDate();
+        mes = hoje.getUTCMonth() + 1;
+        ano = hoje.getFullYear();
+        hora = '';
+
+        ret = [dia, mes, ano, hora];
     }
-    return [dia, mes, ano, hora];
+    return ret;
 }
 
 /**
@@ -224,10 +265,10 @@ function confirmPassword() {
     var password = document.getElementById("password");
     var confirm_password = document.getElementById("confirm_password");
     var msgValid = document.getElementById("msgValid");
-    
+
     msgValid.setAttribute('class', '');
     msgValid.innerText = '';
-    if(password.value != '' && confirm_password.value != ''){
+    if (password.value != '' && confirm_password.value != '') {
         if (password.value != confirm_password.value) {
             password.value = '';
             confirm_password.value = '';

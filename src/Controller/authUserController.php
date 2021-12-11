@@ -53,7 +53,12 @@ class authUserController extends Users
      */
     public function Logout()
     {
-        session_unset($_SESSION);
+        session_start();
+        unset(
+            $_SESSION['usuario'],
+            $_SESSION['nome'],
+            $_SESSION['id']
+        );
         header('Location: login');
     }
 
