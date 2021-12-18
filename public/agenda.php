@@ -5,6 +5,7 @@ use Controller\agendaController;
 $use = new agendaController;
 
 $agenda = $use->AllgetEvents($idUsu);
+var_dump($_POST);
 if($_POST && !empty($_POST)){
     $formAjax = $use->TrayInsertAgenda();
 
@@ -12,6 +13,8 @@ if($_POST && !empty($_POST)){
         echo json_encode($formAjax);
         exit;
     }
+    print 'Error';
+    exit;
 }
 ?>
 

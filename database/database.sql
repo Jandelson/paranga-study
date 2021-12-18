@@ -1,6 +1,7 @@
 CREATE TABLE endereco
 (
     id_endereco integer PRIMARY KEY AUTO_INCREMENT,
+    id_contato int NOT NULL,
     logradouro varchar(255),
     cidade varchar(255),
     bairro varchar(255),
@@ -20,6 +21,7 @@ CREATE TABLE contato
     id_contato integer PRIMARY KEY AUTO_INCREMENT,
     nome varchar(255),
     email varchar(255),
+    password varchar(255) NOT NULL,
     telefone varchar(255),
     id_tipo_contato integer,
     id_endereco integer,

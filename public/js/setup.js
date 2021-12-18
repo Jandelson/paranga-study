@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     var title, valida = '';
     var calendarEl = document.getElementById('calendar');
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectMirror: true,
-        select: function (arg) {
+        select: function(arg) {
             title = CapturaTexto();
             valida = validaAjax(arg.start, arg.end, true);
             if (title != '' && valida) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             calendar.unselect()
         },
-        eventClick: function (arg) {
+        eventClick: function(arg) {
             if (confirm('Excluir evento?')) {
                 arg.event.remove()
             }
@@ -33,59 +33,59 @@ document.addEventListener('DOMContentLoaded', function () {
         editable: true,
         // dayMaxEvents: true, // allow "more" link when too many events
         events: [{
-            title: 'All Day Event',
-            start: '2021-09-01'
-        },
-        {
-            title: 'Long Event',
-            start: '2021-09-07',
-            end: '2021-09-10'
-        },
-        {
-            groupId: 999,
-            title: 'Repeating Event',
-            start: '2021-09-09T16:00:00'
-        },
-        {
-            groupId: 999,
-            title: 'Repeating Event',
-            start: '2021-09-16T16:00:00'
-        },
-        {
-            title: 'Conference',
-            start: '2021-09-11',
-            end: '2021-09-13'
-        },
-        {
-            title: 'Meeting',
-            start: '2021-09-12T10:30:00',
-            end: '2021-09-12T12:30:00'
-        },
-        {
-            title: 'Lunch',
-            start: '2021-09-12T12:00:00'
-        },
-        {
-            title: 'Meeting',
-            start: '2021-09-12T14:30:00'
-        },
-        {
-            title: 'Happy Hour',
-            start: '2021-09-12T17:30:00'
-        },
-        {
-            title: 'Dinner',
-            start: '2021-09-12T20:00:00'
-        },
-        {
-            title: 'Birthday Party',
-            start: '2021-09-13T07:00:00'
-        },
-        {
-            title: 'Click for Google',
-            url: 'http://google.com/',
-            start: '2021-09-28'
-        }
+                title: 'All Day Event',
+                start: '2021-09-01'
+            },
+            {
+                title: 'Long Event',
+                start: '2021-09-07',
+                end: '2021-09-10'
+            },
+            {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2021-09-09T16:00:00'
+            },
+            {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2021-09-16T16:00:00'
+            },
+            {
+                title: 'Conference',
+                start: '2021-09-11',
+                end: '2021-09-13'
+            },
+            {
+                title: 'Meeting',
+                start: '2021-09-12T10:30:00',
+                end: '2021-09-12T12:30:00'
+            },
+            {
+                title: 'Lunch',
+                start: '2021-09-12T12:00:00'
+            },
+            {
+                title: 'Meeting',
+                start: '2021-09-12T14:30:00'
+            },
+            {
+                title: 'Happy Hour',
+                start: '2021-09-12T17:30:00'
+            },
+            {
+                title: 'Dinner',
+                start: '2021-09-12T20:00:00'
+            },
+            {
+                title: 'Birthday Party',
+                start: '2021-09-13T07:00:00'
+            },
+            {
+                title: 'Click for Google',
+                url: 'http://google.com/',
+                start: '2021-09-28'
+            }
         ]
     });
 
@@ -130,12 +130,12 @@ function CapturaTexto(origem) {
  * @param {String} titulo 
  * @param {String} msg 
  */
-function ChamaModal(titulo, msg){
+function ChamaModal(titulo, msg) {
     document.querySelector('#tituloModal').innerText = titulo;
     document.querySelector('#msgModal').innerText = msg;
     var myModal = new bootstrap.Modal(document.getElementById('ChamaModal'), {
         keyboard: false
-    })    
+    })
     myModal.show();
 }
 
@@ -172,19 +172,19 @@ function validaAjax(start, end, safe) {
                             'start': data_start,
                             'end': data_end,
                         },
-                        success: function (response) {
+                        success: function(response) {
                             resp = true;
                         }
                     });
                 }
-            }else{
-                ChamaModal('Dia inválido','Insira uma data válida');
+            } else {
+                ChamaModal('Dia inválido', 'Insira uma data válida');
             }
-        }else{
-            ChamaModal('Mês inválido','Insira um mês valido');
+        } else {
+            ChamaModal('Mês inválido', 'Insira um mês valido');
         }
-    }else{
-        ChamaModal('Ano inválido','Insira ano valido');
+    } else {
+        ChamaModal('Ano inválido', 'Insira ano valido');
     }
 
     return resp;
@@ -265,6 +265,7 @@ function confirmPassword() {
     var password = document.getElementById("password");
     var confirm_password = document.getElementById("confirm_password");
     var msgValid = document.getElementById("msgValid");
+    var Cad_usu = document.getElementById("Cad_usu");
 
     msgValid.setAttribute('class', '');
     msgValid.innerText = '';
@@ -272,12 +273,17 @@ function confirmPassword() {
         if (password.value != confirm_password.value) {
             password.value = '';
             confirm_password.value = '';
+            Cad_usu.setAttribute('Disabled', '');
             msgValid.setAttribute('class', 'invalid-feedback d-block');
             msgValid.innerText = 'Senhas diferentes, tente novamente!';
+
         } else {
+            Cad_usu.removeAttribute('Disabled', '');
             msgValid.setAttribute('class', 'valid-feedback d-block');
             msgValid.innerText = 'Senha válidada!';
             confirm_password.setCustomValidity('');
         }
+    } else {
+        Cad_usu.setAttribute('Disabled', '');
     }
 }

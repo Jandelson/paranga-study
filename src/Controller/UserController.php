@@ -15,10 +15,11 @@ class UserController extends Users
 
      /**
       * Busca no Model os meus dados
+      * @param Integer $idUser
       * @return Array
       */
-     public function MeusDados(){
-         return $this->getMeuDados();
+     public function MeusDados($idUser){
+         return $this->getMeuDados($idUser);
      }
 
      /**

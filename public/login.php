@@ -97,7 +97,8 @@ ob_start();
                                             <div class="row mt-3 p-2">
                                                 <div class="col-md-12">
                                                     <div class="col-md-12">Insira seu usuario para acessar</div>
-                                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                                    <input type="password" name="password" class="form-control mt-2" placeholder="Senha de acesso!">
                                                 </div>
                                                 <center>
                                                     <a href="home">
@@ -119,9 +120,12 @@ ob_start();
                                         <small>Básico, após logar ser precisa finalizar o cadastro</small>
                                     </center>
                                     <div class="mb-3">
+                                        <label for="nome">Nome</label>
+                                        <input class="form-control" type="nome" id="nome" name="nome" required>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="email">Email</label>
                                         <input class="form-control" type="email" id="email" name="email" required>
-                                        <div class="invalid-feedback">Insera um email válido </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="password">Senha</label>
@@ -133,7 +137,7 @@ ob_start();
                                     <div class="" id='msgValid'></div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-success w-50 mt-5">
+                                    <button type="submit" disabled class="btn btn-success w-50 mt-5" id="Cad_usu">
                                         Cadastrar
                                     </button>
                                     <input type="hidden" value="safe" name="safe">
